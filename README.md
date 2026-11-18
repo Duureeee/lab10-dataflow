@@ -364,3 +364,28 @@ Java compiler мөн алдаа мэдээлээгүй.
 Ашиглагдаагүй хувьсагчийг илрүүлэхэд
 IDE inspection болон static analysis тохиромжтой.
 M3-ийн туршилтын дараа эх кодыг сэргээсэн.
+
+### M3 — PMD Static Analysis Result
+
+M3 мутацийн үед ашиглагдаагүй локал хувьсагчийг
+PMD 7.14.0 статик анализын хэрэгслээр шалгасан.
+
+- Rule: UnusedLocalVariable
+- File: DataFlowTargets.java
+- Method: bonus()
+- Line: 49
+- Variable: total
+
+PMD warning:
+
+```text
+Avoid unused local variables such as 'total'.
+```
+
+JUnit-ийн 10 тест M3 мутацийг илрүүлээгүй боловч
+PMD статик анализ илрүүлсэн.
+
+Нотолгоо: results/pmd-M3.xml
+
+Мутацийн дараа DataFlowTargets.java файлыг
+анхны хувилбарт сэргээсэн.
