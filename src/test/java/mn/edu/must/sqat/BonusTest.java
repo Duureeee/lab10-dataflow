@@ -61,4 +61,12 @@ class BonusTest {
         assertEquals(5, DataFlowTargets.bonus(attendance, 2));
     }
 
+
+    @Test
+    @DisplayName("M2 kill: present differs from best after breaks")
+    void duDetectWrongBestUpdate() {
+        int[] attendance = {1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1};
+        assertEquals(5, DataFlowTargets.bonus(attendance, 5));
+    }
+
 }
