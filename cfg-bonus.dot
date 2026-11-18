@@ -1,0 +1,50 @@
+digraph BonusCFG {
+    graph [rankdir=TB, dpi=160, nodesep=0.45, ranksep=0.7];
+    node [shape=box, style=rounded, fontname="DejaVu Sans", fontsize=11];
+    edge [fontname="DejaVu Sans", fontsize=9];
+
+    start [label="31: bonus(attendance, threshold)"];
+    nullcheck [label="32: attendance == null?", shape=diamond];
+    negcheck [label="32: threshold < 0?", shape=diamond];
+    error [label="33: throw IllegalArgumentException"];
+    init [label="35: present = 0\n36: streak = 0\n37: best = 0"];
+    loop [label="38: Has next element?\nattendance p-use", shape=diamond];
+    assign [label="38: a = next element\na def"];
+    checka [label="39: a > 0?", shape=diamond];
+    present [label="40: present = present + 1"];
+    streak [label="41: streak = streak + 1"];
+    checkbest [label="42: streak > best?", shape=diamond];
+    best [label="43: best = streak"];
+    reset [label="46: streak = 0 (kill)"];
+    score [label="49: score = 0"];
+    threshold [label="50: present >= threshold?", shape=diamond];
+    five [label="51: score = 5"];
+    checkfive [label="53: best >= 5?", shape=diamond];
+    extra [label="54: score = score + 3"];
+    ret [label="56: return score"];
+
+    start -> nullcheck [label="bonusLongStreakWithBreak"];
+    nullcheck -> error [label="T: bonusNullInput"];
+    nullcheck -> negcheck [label="F: bonusLongStreakWithBreak"];
+    negcheck -> error [label="T: bonusNegativeThreshold"];
+    negcheck -> init [label="F: bonusLongStreakWithBreak"];
+    init -> loop [label="bonusLongStreakWithBreak"];
+    loop -> assign [label="T: bonusLongStreakWithBreak"];
+    loop -> score [label="F: bonusBelowThreshold"];
+    assign -> checka [label="bonusLongStreakWithBreak"];
+    checka -> present [label="T: bonusLongStreakWithBreak"];
+    checka -> reset [label="F: bonusLongStreakWithBreak"];
+    present -> streak [label="bonusLongStreakWithBreak"];
+    streak -> checkbest [label="bonusLongStreakWithBreak"];
+    checkbest -> best [label="T: bonusLongStreakWithBreak"];
+    checkbest -> loop [label="F: bonusLongStreakWithBreak"];
+    best -> loop [label="bonusLongStreakWithBreak"];
+    reset -> loop [label="bonusLongStreakWithBreak"];
+    score -> threshold [label="bonusBelowThreshold"];
+    threshold -> five [label="T: bonusLongStreakWithBreak"];
+    threshold -> checkfive [label="F: bonusBelowThreshold"];
+    five -> checkfive [label="bonusLongStreakWithBreak"];
+    checkfive -> extra [label="T: bonusLongStreakWithBreak"];
+    checkfive -> ret [label="F: bonusBelowThreshold"];
+    extra -> ret [label="bonusLongStreakWithBreak"];
+}
