@@ -142,39 +142,39 @@ DU хосуудыг оруулав. T = True, F = False.
 
 | Хувьсагч | Def | Use | Төрөл | Def-clear зам | Тестийн ID | Хамралт |
 |---|---|---|---|---|---|---|
-| attendance | 31 | 32T | p-use | 31→32T (null) | — | Шалгаагүй |
-| attendance | 31 | 32F | p-use | 31→32F (non-null) | — | Шалгаагүй |
-| attendance | 31 | 38T | p-use | 31→32F→35→36→37→38T | — | Шалгаагүй |
-| attendance | 31 | 38F | p-use | 31→32F→35→36→37→38F | — | Шалгаагүй |
-| threshold | 31 | 32T | p-use | 31→32T (negative) | — | Шалгаагүй |
-| threshold | 31 | 32F | p-use | 31→32F (nonnegative) | — | Шалгаагүй |
-| threshold | 31 | 50T | p-use | 31→32F→38...→49→50T | — | Шалгаагүй |
-| threshold | 31 | 50F | p-use | 31→32F→38...→49→50F | — | Шалгаагүй |
-| a | 38 | 39T | p-use | 38→39T | — | Шалгаагүй |
-| a | 38 | 39F | p-use | 38→39F | — | Шалгаагүй |
-| present | 35 | 40 | c-use | 35→38T→39T→40 | — | Шалгаагүй |
-| present | 35 | 50T | p-use | 35→38F→49→50T | — | Шалгаагүй |
-| present | 35 | 50F | p-use | 35→38F→49→50F | — | Шалгаагүй |
-| present | 40 | 40 | c-use | 40→38T→39T→40 | — | Шалгаагүй |
-| present | 40 | 50T | p-use | 40→38F→49→50T | — | Шалгаагүй |
-| present | 40 | 50F | p-use | 40→38F→49→50F | — | Шалгаагүй |
-| streak | 36 | 41 | c-use | 36→38T→39T→40→41 | — | Шалгаагүй |
-| streak | 41 | 41 | c-use | 41→42→38T→39T→40→41 | — | Шалгаагүй |
-| streak | 41 | 42T | p-use | 41→42T | — | Шалгаагүй |
-| streak | 41 | 42F | p-use | 41→42F | — | Шалгаагүй |
-| streak | 41 | 43 | c-use | 41→42T→43 | — | Шалгаагүй |
-| streak | 46 | 41 | c-use | 46→38T→39T→40→41 | — | Шалгаагүй |
-| best | 37 | 42T | p-use | 37→38T→39T→40→41→42T | — | Шалгаагүй |
-| best | 37 | 53F | p-use | 37→38F→49→50→53F | — | Шалгаагүй |
-| best | 43 | 42T | p-use | 43→38T→39T→40→41→42T | — | Шалгаагүй |
-| best | 43 | 42F | p-use | 43→38T→39F→46→38T→39T→40→41→42F | — | Шалгаагүй |
-| best | 43 | 53T | p-use | 43→38F→49→50→53T | — | Шалгаагүй |
-| best | 43 | 53F | p-use | 43→38F→49→50→53F | — | Шалгаагүй |
-| score | 49 | 54 | c-use | 49→50F→53T→54 | — | Шалгаагүй |
-| score | 49 | 56 | c-use | 49→50F→53F→56 | — | Шалгаагүй |
-| score | 51 | 54 | c-use | 51→53T→54 | — | Шалгаагүй |
-| score | 51 | 56 | c-use | 51→53F→56 | — | Шалгаагүй |
-| score | 54 | 56 | c-use | 54→56 | — | Шалгаагүй |
+| attendance | 31 | 32T | p-use | 31→32T (null) | duNullAttendance | Тийм |
+| attendance | 31 | 32F | p-use | 31→32F (non-null) | allDefsThresholdMet | Тийм |
+| attendance | 31 | 38T | p-use | 31→32F→35→36→37→38T | allDefsThresholdMet | Тийм |
+| attendance | 31 | 38F | p-use | 31→32F→35→36→37→38F | duEmptyBelowThreshold | Тийм |
+| threshold | 31 | 32T | p-use | 31→32T (negative) | duNegativeThreshold | Тийм |
+| threshold | 31 | 32F | p-use | 31→32F (nonnegative) | allDefsThresholdMet | Тийм |
+| threshold | 31 | 50T | p-use | 31→32F→38...→49→50T | allDefsThresholdMet | Тийм |
+| threshold | 31 | 50F | p-use | 31→32F→38...→49→50F | allDefsThresholdMissed | Тийм |
+| a | 38 | 39T | p-use | 38→39T | allDefsThresholdMet | Тийм |
+| a | 38 | 39F | p-use | 38→39F | allDefsThresholdMet | Тийм |
+| present | 35 | 40 | c-use | 35→38T→39T→40 | allDefsThresholdMet | Тийм |
+| present | 35 | 50T | p-use | 35→38F→49→50T | duEmptyThresholdZero | Тийм |
+| present | 35 | 50F | p-use | 35→38F→49→50F | duEmptyBelowThreshold | Тийм |
+| present | 40 | 40 | c-use | 40→38T→39T→40 | allDefsThresholdMet | Тийм |
+| present | 40 | 50T | p-use | 40→38F→49→50T | allDefsThresholdMet | Тийм |
+| present | 40 | 50F | p-use | 40→38F→49→50F | allDefsThresholdMissed | Тийм |
+| streak | 36 | 41 | c-use | 36→38T→39T→40→41 | allDefsThresholdMet | Тийм |
+| streak | 41 | 41 | c-use | 41→42→38T→39T→40→41 | allDefsThresholdMet | Тийм |
+| streak | 41 | 42T | p-use | 41→42T | allDefsThresholdMet | Тийм |
+| streak | 41 | 42F | p-use | 41→42F | allDefsThresholdMet | Тийм |
+| streak | 41 | 43 | c-use | 41→42T→43 | allDefsThresholdMet | Тийм |
+| streak | 46 | 41 | c-use | 46→38T→39T→40→41 | allDefsThresholdMet | Тийм |
+| best | 37 | 42T | p-use | 37→38T→39T→40→41→42T | allDefsThresholdMet | Тийм |
+| best | 37 | 53F | p-use | 37→38F→49→50→53F | duEmptyBelowThreshold | Тийм |
+| best | 43 | 42T | p-use | 43→38T→39T→40→41→42T | allDefsThresholdMet | Тийм |
+| best | 43 | 42F | p-use | 43→38T→39F→46→38T→39T→40→41→42F | allDefsThresholdMet | Тийм |
+| best | 43 | 53T | p-use | 43→38F→49→50→53T | allDefsThresholdMet | Тийм |
+| best | 43 | 53F | p-use | 43→38F→49→50→53F | duShortStreakBelowFive | Тийм |
+| score | 49 | 54 | c-use | 49→50F→53T→54 | allDefsThresholdMissed | Тийм |
+| score | 49 | 56 | c-use | 49→50F→53F→56 | duEmptyBelowThreshold | Тийм |
+| score | 51 | 54 | c-use | 51→53T→54 | allDefsThresholdMet | Тийм |
+| score | 51 | 56 | c-use | 51→53F→56 | duShortStreakBelowFive | Тийм |
+| score | 54 | 56 | c-use | 54→56 | allDefsThresholdMet | Тийм |
 
 **Нийт: 33 биелэх боломжтой DU хос.**
 
